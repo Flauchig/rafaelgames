@@ -27,7 +27,6 @@ function App() {
   <AppContainer>
    <Header />
     <Pesquisa />
-   <AppContainer />
     <UltimosLancamentos />
   </AppContainer>
  
