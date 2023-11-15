@@ -1,19 +1,18 @@
-
 import Input from '../Input';
-
 import styled from 'styled-components';
-import { useState } from 'react';// useState é um hook que faz  com que os componentes tenham um estado e o estado é uma informação que pode mudar com o tempo
-// Certifique-se de importar 'jogos' com letra minúscula
+import { useState } from 'react';
 import { jogos } from './dadosPesquisa';
 
-// Restante do código
 const PesquisaContainer = styled.section`
   background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
   color: #FFF;
   text-align: center;
-  padding: 85px 0;
-  height: 270px;
-  width: 100%;
+  padding: 100px 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Titulo = styled.h2`
@@ -29,80 +28,57 @@ const SubTitulo = styled.h3`
   margin-bottom: 40px;
 `;
 
-
 const JogoContainer = styled.div`
-  border: 1px solid #fff;
-  padding: 8px;
-  margin: 0px auto; /* Adicionado 'auto' para centralizar horizontalmente */
+  padding: 10px;
+  margin: 20px auto;
   text-align: center;
   box-sizing: border-box;
-  width: 25%;
-  margin-top: 50px;
-
+  display: block;
   cursor: pointer;
-  p {
-      width: 200px;
-  }
+  border: 1px solid transparent;
+  
   img {
-      width: 100px;
+    width: 100px;
   }
+
   &:hover {
-      border: 1px solid black;
+    border: 1px solid black;
+  }
 `;
 
-
 function Pesquisa() {
-    // Estado para armazenar os resultados da pesquisa
-    const [jogosPesquisados, setJogoPesquisado] = useState([]);
-  
-    return (
-      <PesquisaContainer>
-        {/* Título da seção de pesquisa */}
-        <Titulo>Ja sabe que jogo vai buscar?</Titulo>
-  
-        {/* Subtítulo com instruções para o usuário */}
-        <SubTitulo>Encontre seus jogos em "Meus Jogos"</SubTitulo>
-  
-        {/* Campo de input para digitar o nome do jogo a ser pesquisado */}
-        <Input
-          placeholder="Procure seu próximo jogo"
-          onChange={(evento) => {
-            // Obtém o texto digitado no input
-            const textoDigitado = evento.target.value.toLowerCase();
-  
-            // Se o campo estiver vazio, exibe todos os jogos
-            if (textoDigitado === '') {
-              setJogoPesquisado(jogos);
-            } else {
-              // Filtra os jogos com base no texto digitado
-              const ResultadoPesquisa = jogos.filter((Jogo) =>
-                Jogo.nome.toLowerCase().includes(textoDigitado)
-              );
-  
-              // Atualiza o estado com os resultados da pesquisa
-              setJogoPesquisado(ResultadoPesquisa);
-            }
-          }}
-        ></Input>
-  
-        {/* Mapeia os resultados da pesquisa e renderiza cada jogo encontrado */}
-        {jogosPesquisados.map((jogo) => (
-          <JogoContainer >
-          {/* Exibe o nome do jogo */}
-            <p>{jogo.nome}</p>
-            
-            {/* Exibe a imagem do jogo com o contorno adicionado */}
-            <img src={jogo.src} alt="jogos" />
-          </JogoContainer>
-        ))}
-        </PesquisaContainer>
+  const [jogosPesquisados, setJogosPesquisados] = useState([]);
 
-     
-    );
-  
-  }
-  
-  export default Pesquisa;
+  return (
+    <PesquisaContainer>
+      <Titulo>Ja sabe que jogo vai buscar?</Titulo>
+      <SubTitulo>Encontre seus jogos em "Meus Jogos"</SubTitulo>
+      
+      <Input
+        placeholder="Procure seu próximo jogo"
+        onChange={(evento) => {
+          const textoDigitado = evento.target.value.toLowerCase();
 
+          if (textoDigitado === '') {
+            setJogosPesquisados(jogos);
+          } else {
+            const resultadoPesquisa = jogos.filter((jogo) =>
+              jogo.nome.toLowerCase().includes(textoDigitado)
+            );
 
+            setJogosPesquisados(resultadoPesquisa);
+          }
+        }}
+      ></Input>
 
+      {jogosPesquisados.map((jogo) => (
+        <JogoContainer key={jogo.id}>
+          <p>{jogo.nome}</p>
+          <img src={jogo.src} alt="jogos" />
+        </JogoContainer>
+      ))}
+    </PesquisaContainer>
+  );
+}
+
+export default Pesquisa;
