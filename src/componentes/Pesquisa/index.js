@@ -38,7 +38,11 @@ const JogoContainer = styled.div`
   border: 1px solid transparent;
   
   img {
-    width: 100px;
+    width: 200px;
+  }
+
+  p {
+    font-size: 25px;
   }
 
   &:hover {
