@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 const LancamentosContainer = styled.section`
 
-    background-color:#1b84d2;
+    background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);    
     padding-bottom: 30px;
     display: flex;
     flex-direction: column;
