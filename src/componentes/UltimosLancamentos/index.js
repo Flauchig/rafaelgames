@@ -8,7 +8,8 @@ import styled from "styled-components";
 
 const LancamentosContainer = styled.section`
 
-    background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);    
+background-image: linear-gradient(90deg, #582121 35%, #8F3D3D 165%);
+   
     padding-bottom: 30px;
     display: flex;
     flex-direction: column;
@@ -43,7 +44,7 @@ gap: 25px;
 function UltimosLancamentos() {
     return (
         <LancamentosContainer>
-            <Titulo cor = 'black'>Últimos Lançamentos</Titulo>
+            <Titulo  >Últimos Lançamentos</Titulo>
             {/* aqui estamos recebendo a props .cor e mudando a cor do elemento  diretamente */}
 
             <NovosJogosContainer>
@@ -58,6 +59,7 @@ function UltimosLancamentos() {
 
             </NovosJogosContainer>
             <CardRecomenda  
+
                     titulo= "Talvez voçê se interesse por ..."
                     subtitulo= "Forza Horizon 5"
                     descricao= " Um dos Melhores jogos de automobilismo da atualidade"

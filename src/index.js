@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import App from './rotas/App';
 import reportWebVitals from './reportWebVitals';
 import { createGlobalStyle } from 'styled-components';
-
+// aqui é feita a crição de estilos globais.
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// este import de router cria rotas no react para podemor manipularmos as urls
+import Header from './componentes/Header';
+import { Favoritos } from './rotas/Favoritos';
 const GlobalStyle = createGlobalStyle`
 
 body {
@@ -26,13 +30,23 @@ code {
 `
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// este aqui é um compnente de classe
+
 root.render(
   <React.StrictMode>
 
     <GlobalStyle />
-    <App />
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/favoritos" element={<Favoritos />} />
+        <Route path="/" element={<App />} />
+      </Routes>
+    </BrowserRouter>
+    {/* dentro de browser router podemos criar rotas e manipularmos o caminho delas dentro deste atributos */}
   </React.StrictMode>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -8,6 +8,7 @@ const LogoContainer = styled.div`
 const LogoImage = styled.img`
 
   display: flex;
+  cursor: pointer;
 
 
 

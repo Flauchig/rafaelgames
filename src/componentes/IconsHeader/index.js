@@ -10,8 +10,9 @@ align-items: center;
 const Icone = styled.li`
   font-size: 25px;
   position: relative;
-  margin-right: 50px;
+  margin-right: 25px;
   width: 25px;
+  list-style: none;
 
   /* Espaçamento entre os ícones, ajuste conforme necessário */
 `

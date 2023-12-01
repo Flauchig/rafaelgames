@@ -1,12 +1,12 @@
-import Header from './componentes/Header';
-import Pesquisa from './componentes/Pesquisa';
-import UltimosLancamentos from './componentes/UltimosLancamentos';
+
+import Pesquisa from '../componentes/Pesquisa';
+import UltimosLancamentos from '../componentes/UltimosLancamentos';
 import styled from 'styled-components';
 
 const AppContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
+  background-image: linear-gradient(90deg, #582121 35%, #8F3D3D 165%);
   li {
     list-style: none;
   }
@@ -22,7 +22,7 @@ const Conteudo = styled.div`
 function App() {
   return (
     <AppContainer>
-      <Header />
+
 
       <Conteudo>
         <Pesquisa />

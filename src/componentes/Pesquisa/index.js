@@ -1,10 +1,14 @@
 import Input from '../Input';
 import styled from 'styled-components';
-import { useState } from 'react';
-import { jogos } from './dadosPesquisa';
+import { useEffect, useState } from 'react';
+import { getjogos } from '../../servicos/jogos';
+import { jogosImg } from './dadosPesquisa';
+import { postFavorito } from '../../servicos/Favoritos';
+
+
 
 const PesquisaContainer = styled.section`
-  background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
+background-image: linear-gradient(90deg, #582121 35%, #8F3D3D 165%);
   color: #FFF;
   text-align: center;
   padding: 100px 0;
@@ -52,12 +56,34 @@ const JogoContainer = styled.div`
 
 function Pesquisa() {
   const [jogosPesquisados, setJogosPesquisados] = useState([]);
+  const [jogos, setJogos] = useState([]);
+  //tem um valor vazio por não estar setando algo especifico 
+
+
+  useEffect(() => {
+    async function fetchJogos() {
+      try {
+        const jogosAPI = await getjogos(); // Chama a função getjogos do seu serviço
+        setJogos(jogosAPI);
+      } catch (error) {
+        console.error('Erro ao buscar os jogos:', error);
+      }
+    }
+
+    fetchJogos();
+  }, []);
+
+  async function insertFavorito(id){
+    await postFavorito(id)
+    alert(`jodo de ${jogos.find(jogo => jogo.id === id).nome} adicionado aos favoritos`)
+
+  }
 
   return (
     <PesquisaContainer>
       <Titulo>Ja sabe que jogo vai buscar?</Titulo>
       <SubTitulo>Encontre seus jogos em "Meus Jogos"</SubTitulo>
-      
+
       <Input
         placeholder="Procure seu próximo jogo"
         onChange={(evento) => {
@@ -76,9 +102,12 @@ function Pesquisa() {
       ></Input>
 
       {jogosPesquisados.map((jogo) => (
-        <JogoContainer key={jogo.id}>
+        <JogoContainer 
+        key={jogo.id}
+        onClick={() => insertFavorito(jogo.id) }
+        >
           <p>{jogo.nome}</p>
-          <img src={jogo.src} alt="jogos" />
+          <img src={jogosImg.find(jogos => jogos.nome === jogo.nome).src} alt="jogos" />
         </JogoContainer>
       ))}
     </PesquisaContainer>

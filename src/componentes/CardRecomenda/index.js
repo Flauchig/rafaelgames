@@ -4,7 +4,8 @@ import styled from "styled-components";
 
 const CardSection = styled.section `
 
-background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
+background-image: linear-gradient(90deg, #582121 35%, #8F3D3D 165%);
+
 
 
 `
